@@ -1,0 +1,184 @@
+﻿@model InsperUniversity.Models.Student
+
+@{
+    ViewBag.Title = "Cadastrar";
+}
+
+<h2>Insper</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h3>Cadastro de Horarios de aula e atendimento</h3>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Class, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Class, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Class, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Team, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Team, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Team, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <hr />
+        <h3>Horários de Aula</h3>
+        <div class="row">
+            <div class="col-md-6">
+
+                <h4>Primeiro Horario</h4>
+                <div class="form-group">
+                    @Html.HiddenFor(model => model.Schedule[0].Tipo, new { Value = "Aula" })
+                    @Html.LabelFor(model => model.Schedule[0].Start, htmlAttributes: new { @class = "control-label col-md-3 col-sm-2" })
+
+                    @Html.EditorFor(model => model.Schedule[0].Start, new { htmlAttributes = new { @class = "form-control col-md-1 col-sm-2", type = "time" } })
+                    @Html.ValidationMessageFor(model => model.Schedule[0].Start, "", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="form-group ">
+                    @Html.LabelFor(model => model.Schedule[0].End, htmlAttributes: new { @class = "control-label col-md-3 col-sm-2" })
+
+                    @Html.EditorFor(model => model.Schedule[0].End, new { htmlAttributes = new { @class = "form-control col-md-1 col-sm-2", type = "time" } })
+                    @Html.ValidationMessageFor(model => model.Schedule[0].End, "", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Schedule[0].Day, htmlAttributes: new { @class = "control-label col-md-3 col-sm-2" })
+
+                    @Html.EditorFor(model => model.Schedule[0].Day, new { htmlAttributes = new { @class = "form-control col-md-1 col-sm-2" } })
+                    @Html.ValidationMessageFor(model => model.Schedule[0].Day, "", new { @class = "text-danger" })
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+            <h4>Segundo Horario</h4>
+            <div class="form-group">
+                @Html.HiddenFor(model => model.Schedule[1].Tipo, new { Value = "Aula" })
+                @Html.LabelFor(model => model.Schedule[1].Start, htmlAttributes: new { @class = "control-label col-md-3 col-sm-2" })
+
+                @Html.EditorFor(model => model.Schedule[1].Start, new { htmlAttributes = new { @class = "form-control col-md-1 col-sm-2", type = "time" } })
+                @Html.ValidationMessageFor(model => model.Schedule[1].Start, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div class="form-group ">
+                @Html.LabelFor(model => model.Schedule[1].End, htmlAttributes: new { @class = "control-label col-md-3 col-sm-2" })
+
+                @Html.EditorFor(model => model.Schedule[1].End, new { htmlAttributes = new { @class = "form-control col-md-1 col-sm-2", type = "time" } })
+                @Html.ValidationMessageFor(model => model.Schedule[1].End, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Schedule[1].Day, htmlAttributes: new { @class = "control-label col-md-3 col-sm-2" })
+
+                @Html.EditorFor(model => model.Schedule[1].Day, new { htmlAttributes = new { @class = "form-control col-md-1 col-sm-2" } })
+                @Html.ValidationMessageFor(model => model.Schedule[1].Day, "", new { @class = "text-danger" })
+
+            </div>
+
+        </div>
+
+        </div>
+     
+       
+        <hr />
+        <h3>Horários de Atendimento</h3>
+        <div class="row">
+            <div class="col-md-6">
+
+                <h4>Primeiro Horario</h4>
+                <div class="form-group">
+                    @Html.HiddenFor(model => model.Schedule[2].Tipo, new { Value = "Atendimento" })
+                    @Html.LabelFor(model => model.Schedule[2].Start, htmlAttributes: new { @class = "control-label col-md-3 col-sm-2" })
+
+                    @Html.EditorFor(model => model.Schedule[2].Start, new { htmlAttributes = new { @class = "form-control col-md-1 col-sm-2", type = "time" } })
+                    @Html.ValidationMessageFor(model => model.Schedule[2].Start, "", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="form-group ">
+                    @Html.LabelFor(model => model.Schedule[2].End, htmlAttributes: new { @class = "control-label col-md-3 col-sm-2" })
+
+                    @Html.EditorFor(model => model.Schedule[2].End, new { htmlAttributes = new { @class = "form-control col-md-1 col-sm-2", type = "time" } })
+                    @Html.ValidationMessageFor(model => model.Schedule[0].End, "", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Schedule[2].Day, htmlAttributes: new { @class = "control-label col-md-3 col-sm-2" })
+
+                    @Html.EditorFor(model => model.Schedule[2].Day, new { htmlAttributes = new { @class = "form-control col-md-1 col-sm-2" } })
+                    @Html.ValidationMessageFor(model => model.Schedule[0].Day, "", new { @class = "text-danger" })
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <h4>Segundo Horario</h4>
+                <div class="form-group">
+                    @Html.HiddenFor(model => model.Schedule[3].Tipo, new { Value = "Atendimento" })
+                    @Html.LabelFor(model => model.Schedule[3].Start, htmlAttributes: new { @class = "control-label col-md-3 col-sm-2" })
+
+                    @Html.EditorFor(model => model.Schedule[3].Start, new { htmlAttributes = new { @class = "form-control col-md-1 col-sm-2", type = "time" } })
+                    @Html.ValidationMessageFor(model => model.Schedule[1].Start, "", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="form-group ">
+                    @Html.LabelFor(model => model.Schedule[3].End, htmlAttributes: new { @class = "control-label col-md-3 col-sm-2" })
+
+                    @Html.EditorFor(model => model.Schedule[3].End, new { htmlAttributes = new { @class = "form-control col-md-1 col-sm-2", type = "time" } })
+                    @Html.ValidationMessageFor(model => model.Schedule[1].End, "", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Schedule[3].Day, htmlAttributes: new { @class = "control-label col-md-3 col-sm-2" })
+
+                    @Html.EditorFor(model => model.Schedule[3].Day, new { htmlAttributes = new { @class = "form-control col-md-1 col-sm-2" } })
+                    @Html.ValidationMessageFor(model => model.Schedule[1].Day, "", new { @class = "text-danger" })
+
+                </div>
+
+            </div>
+
+
+        </div>
+       
+
+         
+        <div class="row">
+            <div class="col-sm-offset-8 col-sm-2">
+
+            </div>
+            <input type="submit" value="Cadastrar" class="btn btn-primary" />
+        </div>
+     
+
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Voltar para a lista", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

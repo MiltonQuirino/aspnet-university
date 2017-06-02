@@ -1,0 +1,83 @@
+﻿@model PagedList.IPagedList<InsperUniversity.Models.Student>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Insper";
+}
+
+<h2>Students</h2>
+
+<p>
+    @Html.ActionLink("Cadastrar", "Create")
+</p>
+@using (Html.BeginForm("Index", "Student", FormMethod.Get))
+{
+    <p>
+        Procurar por nome: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Procurar" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Classe", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            Turma
+        </th>
+        <th>
+            Horario de aula
+        </th>
+        <th>
+            Horario de Atendimento
+        </th>
+        <th></th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Class)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Team)
+            </td>
+            <td>
+               
+                @foreach(var s in item.Schedule.Where(x=>x.Tipo == "Aula"))
+                {
+                   var txt = string.Format("{0} {1} às {2}", s.Day, s.Start, s.End);
+                    
+                    <span>@txt</span>
+                    <br />
+                }
+         
+            </td>
+            <td>
+              
+                @foreach (var s in item.Schedule.Where(x => x.Tipo == "Atendimento"))
+                {
+                    var txt = string.Format("{0} {1} às {2}", s.Day, s.Start, s.End);
+
+                    <span>@txt</span>
+                    <br />
+
+                }
+
+            </td>
+
+            <td>
+                @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
